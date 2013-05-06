@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Hull Registration Demo</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//hull-js.s3.amazonaws.com/develop/hull.js"></script>
+
+    <!-- Initialize hull -->
+    <script>
+      Hull.init({
+        appId: '516d68fc28e06bb7b8000040',
+        orgUrl: 'http://hull-demos.hullapp.io',
+      });
+    </script>
+
+    <!-- "wrapper" widget declaration -->
+    <script>
+      Hull.widget('wrapper', {
+        // Specify templates.
+        templates: [
+          'intro',
+          'logged_in'
+        ],
+
+        // Re-render the widget each time the user changes.
+        refreshEvents: ['model.hull.me.change'],
+
+        beforeRender: function() {
+          // Determines which template to render. Uses this.loggedIn() to check
+          // if the user is logged in or not. We set this.template to:
+          // - 'intro': If the user is not logged in.
+          // - 'logged_in: If the user is logged in.
+          this.template = this.loggedIn() ? 'logged_in' : 'intro';
+        }
+      });
+    </script>
+
+    <script type="text/x-template" data-hull-template="wrapper/intro">
+      <p>Hello visitor</p>
+      <div data-hull-widget="identity@hull"></div>
+    </script>
+
+    <script type="text/x-template" data-hull-template="wrapper/logged_in">
+      <p>Hello {{me.name}} – <a href="#" data-hull-action="logout">Logout</a></p>
+      <div data-hull-widget="registration@hull"></div>
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Hull Registration Demo</h1>
+      <div data-hull-widget="wrapper"></div>
+    </div>
+  </body>
+</html>
