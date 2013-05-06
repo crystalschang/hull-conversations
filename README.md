@@ -4,7 +4,7 @@ For this tutorial, we'll create a registration tunel. First, we will ask the use
 
 ## Prerequisites
 
-- An organization and application. [Create one](http://alpha.hullapp.io/) if you haven’t already.
+- An organization and application. [Create one](http://hullapp.io/) if you haven’t already.
 - An authentication provider linked to your app, so users can log in. For this tutorial I will use Facebook but you can use another if you want. [See our documentation](http://hull.io/docs/services) for more details.
 - An HTTP server, to serve the files included in this repository. If you're not sure how to do it, check out [our guide](https://github.com/hull/minimhull/wiki/Setup-an-HTTP-server).
 
