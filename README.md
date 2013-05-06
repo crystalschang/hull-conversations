@@ -62,12 +62,12 @@ Let's create it:
   <!-- Code omitted on purpose -->
 
   <script type="text/x-template" data-hull-template="wrapper/intro">
-    {{#if me.loggedIn}}
-      <p>Hello visitor</p>
-      <div data-hull-widget="login_button@hull"></div>
-    {{else}}
+    {{#if loggedIn}}
       <p>Hello {{me.name}} – <a href="#" data-hull-action="logout">Logout</a></p>
       <div data-hull-widget="registration@hull"></div>
+    {{else}}
+      <p>Hello visitor</p>
+      <div data-hull-widget="login_button@hull"></div>
     {{/if}}
   </script>
 </head>
