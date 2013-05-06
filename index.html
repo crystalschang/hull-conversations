@@ -20,33 +20,22 @@
     <!-- "wrapper" widget declaration -->
     <script>
       Hull.widget('wrapper', {
-        // Specify templates.
-        templates: [
-          'intro',
-          'logged_in'
-        ],
+        // Specify template.
+        templates: ['intro'],
 
         // Re-render the widget each time the user changes.
-        refreshEvents: ['model.hull.me.change'],
-
-        beforeRender: function() {
-          // Determines which template to render. Uses this.loggedIn() to check
-          // if the user is logged in or not. We set this.template to:
-          // - 'intro': If the user is not logged in.
-          // - 'logged_in: If the user is logged in.
-          this.template = this.loggedIn() ? 'logged_in' : 'intro';
-        }
+        refreshEvents: ['model.hull.me.change']
       });
     </script>
 
     <script type="text/x-template" data-hull-template="wrapper/intro">
-      <p>Hello visitor</p>
-      <div data-hull-widget="identity@hull"></div>
-    </script>
-
-    <script type="text/x-template" data-hull-template="wrapper/logged_in">
-      <p>Hello {{me.name}} – <a href="#" data-hull-action="logout">Logout</a></p>
-      <div data-hull-widget="registration@hull"></div>
+      {{#if me.loggedIn}}
+        <p>Hello visitor</p>
+        <div data-hull-widget="login_button@hull"></div>
+      {{else}}
+        <p>Hello {{me.name}} – <a href="#" data-hull-action="logout">Logout</a></p>
+        <div data-hull-widget="registration@hull"></div>
+      {{/if}}
     </script>
   </head>
 
