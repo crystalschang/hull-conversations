@@ -33,7 +33,7 @@ Replace `APPLICATION_ID` and `ORGANIZATION_ID` with the correct values which you
 
 ## Step 2 - Creating wrapper widget
 
-We want to display different template in function of the user log in state. If he is a visitor we will show him an `intro` template, if he is logged, we will show him a `logged_in` template.
+We want to display different things in function of the user log in state. If he is logged, we will show him a form if he isn't we will show him a sign in button.
 
 To do that we need to create a `wrapper` widget.
 
@@ -49,36 +49,33 @@ To do that we need to create a `wrapper` widget.
 </head>
 ```
 
-Now, we need to declare our templates.
+Now, we need to declare a template.
 
-### Declaring templates
+### Declaring template
 
-Our `wrapper` widget will have two templates, one for each state:
+Our `wrapper` widget will have one template. It will contain a welcome message, our log in button if the user is not logged or our registration widget if he isn't.
 
-- `intro`: will be displayed when the user isn't logged, it will contain a welcome message and our identity widget.
-- `logged_in`: will be displayed when the user is logged, it will contain a welcome message, our registration widget and a logout link.
-
-Let's create them:
+Let's create it:
 
 ```html
 <head>
   <!-- Code omitted on purpose -->
 
   <script type="text/x-template" data-hull-template="wrapper/intro">
-    <h1>Hello visitor</h1>
-    <div data-hull-widget="identity@hull"></div>
-  </script>
-
-  <script type="text/x-template" data-hull-template="wrapper/logged_in">
-    <h1>Hello {{me.name}}</h1>
-    <div data-hull-widget="registration@hull"></div>
+    {{#if me.loggedIn}}
+      <p>Hello visitor</p>
+      <div data-hull-widget="login_button@hull"></div>
+    {{else}}
+      <p>Hello {{me.name}} – <a href="#" data-hull-action="logout">Logout</a></p>
+      <div data-hull-widget="registration@hull"></div>
+    {{/if}}
   </script>
 </head>
 ```
 
-As you can see we have prefixed our template name with "wrapper/" because those template will be owned by the `wrapper` widget.
+As you can see we have prefixed our template name with "wrapper/" because it will be owned by the `wrapper` widget.
 
-Now, we need to specify those templates in `wrapper` widget.
+Now, we need to specify this template in `wrapper` widget.
 
 ```html
 <head>
@@ -86,10 +83,7 @@ Now, we need to specify those templates in `wrapper` widget.
 
   <script>
   Hull.widget('wrapper', {
-    templates: [
-      'intro',
-      'logged_in'
-    ]
+    templates: ['intro']
   });
   </script>
 
@@ -105,14 +99,11 @@ Congratualations! You've just created your first widget! Let's add it to our HTM
 </body>
 ```
 
-Refresh your browser, you should see a "Sign In with Facebook" button.
+Refresh your browser, you should see a sign in button.
 
 ## Step 3 - Detecting if user is logged
 
-As you see clicking on "Sign In with Facebook" doesn't show the form. To fix this, we need to:
-
-- Add `beforeRender` method that will determine which template to render.
-- Set a `refreshEvents` property to refresh (re-render) the widget when the user changes.
+As you see clicking on the sign in button doesn't show the form. To fix this, we need to set a `refreshEvents` property to refresh (re-render) the widget when the user changes.
 
 ```html
 <head>
@@ -120,30 +111,14 @@ As you see clicking on "Sign In with Facebook" doesn't show the form. To fix thi
 
   <script>
   Hull.widget('wrapper', {
-    templates: [
-      'intro',
-      'logged_in'
-    ],
-
-    refreshEvents: ['model.hull.me.change'],
-
-    beforeRender: function() {
-      this.template = this.loggedIn() ? 'logged_in' : 'intro';
-    }
+    templates: ['intro'],
+    refreshEvents: ['model.hull.me.change']
   });
   </script>
 
   <!-- Code omitted on purpose -->
 </head>
 ```
-
-### Determining which template to render
-
-```js
-this.template = this.loggedIn() ? 'logged_in' : 'intro';
-```
-
-Here we use `this.loggedIn()` to check if the user is logged in, we set `this.template` to `'logged_in'`, `'intro'` if he isn't.
 
 ### Setting a refresh event.
 
@@ -153,4 +128,4 @@ refreshEvents: ['model.hull.me.change']
 
 Here we set `refreshEvents` property to `['model.hull.me.change']`. This say to the widget to refresh itself each time the current user changes.
 
-Now, clicking on the "Sign In with Facebook" button should show the form.
+Now, clicking on the sign in button should show the form.
