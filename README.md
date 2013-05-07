@@ -14,8 +14,8 @@ First, create an `index.html`. Add jQuery, and hull.js to your page. You can als
 
 ```html
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="https://hull-js.s3.amazonaws.com/0.4.0/hull.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="//hull-js.s3.amazonaws.com/0.4.0/hull.js"></script>
 ```
 
 Now initialize hull.
@@ -101,9 +101,9 @@ Congratualations! You've just created your first widget! Let's add it to our HTM
 
 Refresh your browser, you should see a sign in button.
 
-## Step 3 - Detecting if user is logged
+## Step 3 - Refreshing template when user logs in.
 
-As you see clicking on the sign in button doesn't show the form. To fix this, we need to set a `refreshEvents` property to refresh (re-render) the widget when the user changes.
+As you can see clicking on the sign in button doesn't show the form. To fix this, we need to set a `refreshEvents` property to refresh (re-render) the widget when the user changes.
 
 ```html
 <head>
@@ -118,12 +118,6 @@ As you see clicking on the sign in button doesn't show the form. To fix this, we
 
   <!-- Code omitted on purpose -->
 </head>
-```
-
-### Setting a refresh event.
-
-```js
-refreshEvents: ['model.hull.me.change']
 ```
 
 Here we set `refreshEvents` property to `['model.hull.me.change']`. This say to the widget to refresh itself each time the current user changes.
