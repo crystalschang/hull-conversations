@@ -29,7 +29,7 @@ Hull.init({
 </script>
 ```
 
-Replace `APPLICATION_ID` and `ORGANIZATION_URL` with the correct values which you can find in your [admin]().
+Replace `APPLICATION_ID` and `ORGANIZATION_URL` with the correct values which you can find in your [admin](http://hullapp.io).
 
 ## Step 2 - Creating wrapper widget
 
@@ -153,7 +153,7 @@ To do that, we need the to instanciate the `registration_admin` that will allow 
 </html>
 ```
 
-Replace `APPLICATION_ID`, `APPLICATION_SECRET` and `ORGANIZATION_URL` with the correct values which you can find in your [admin]().
+Replace `APPLICATION_ID`, `APPLICATION_SECRET` and `ORGANIZATION_URL` with the correct values which you can find in your [admin](http://hullapp.io).
 
 Open this new file in your browser. and fill the textare with:
 
@@ -199,3 +199,7 @@ Now that you know how to save information in the user profile, you probably want
 ## Step 5 - Listing users
 
 In your `admin.html` add the `users_admin` widget. Refresh your browser and you're done.
+
+## Conclusion
+
+I hope you enjoyed this tutorial and it was helpful for your projects. For any question send us an email to contact@hull.io.
