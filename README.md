@@ -1,6 +1,6 @@
 # User Registration Tutorial
 
-For this tutorial, we'll create a registration tunel. First, we will ask the user to log in with his Facebook account, them we will ask him to fill his profile. And finally we'll show him his profile and an edit button that will allow him to edit his profile.
+For this tutorial, we'll create a registration tunel. First, we will ask the user to log in with his Facebook account, them we will ask him to fill a form to complete his profile.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ Hull.init({
 </script>
 ```
 
-Replace `APPLICATION_ID` and `ORGANIZATION_ID` with the correct values which you can find in your [admin]().
+Replace `APPLICATION_ID` and `ORGANIZATION_URL` with the correct values which you can find in your [admin]().
 
 ## Step 2 - Creating wrapper widget
 
@@ -101,7 +101,7 @@ Congratualations! You've just created your first widget! Let's add it to our HTM
 
 Refresh your browser, you should see a sign in button.
 
-## Step 3 - Refreshing template when user logs in.
+## Step 3 - Updating template when user logs in.
 
 As you can see clicking on the sign in button doesn't show the form. To fix this, we need to set a `refreshEvents` property to refresh (re-render) the widget when the user changes.
 
@@ -122,4 +122,80 @@ As you can see clicking on the sign in button doesn't show the form. To fix this
 
 Here we set `refreshEvents` property to `['model.hull.me.change']`. This say to the widget to refresh itself each time the current user changes.
 
-Now, clicking on the sign in button should show the form.
+Now, clicking on the sign in button should show a form that contains two fields (name and email). You probably want to know more about your user.
+
+## Step 4 - Custommizing the form
+
+It will be cool to know what is the website adress of our users.
+
+To do that, we need the to instanciate the `registration_admin` that will allow us to define the fields of our form. We will put this widget in a new HTML document.
+
+```html
+<html>
+  <head>
+    <title>Hull Registration Admin</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//hull-js.s3.amazonaws.com/develop/hull.js"></script>
+
+    <script>
+      Hull.init({
+        appId: 'APPLICATION_ID',
+        appSecret: 'APPLICATION_SECRET',
+        orgUrl: 'ORGANIZATION_URL'
+      });
+    </script>
+  </head>
+  <body>
+    <div data-hull-widget="registration_admin@hull"></div>
+  </body>
+</html>
+```
+
+Replace `APPLICATION_ID`, `APPLICATION_SECRET` and `ORGANIZATION_URL` with the correct values which you can find in your [admin]().
+
+Open this new file in your browser. and fill the textare with:
+
+```json
+[
+  {
+    "name" : "name",
+    "type" : "text",
+    "label" : "Name",
+    "placeholder" : "Your name",
+    "error" : "Please enter your name",
+    "required": true
+  },
+  {
+    "name" : "email",
+    "type" : "email",
+    "label" : "Email",
+    "placeholder" : "you@provider.com",
+    "error" : "Please enter a valid email adress",
+    "required": true 
+  },
+  {
+    "name" : "website",
+    "type" : "url",
+    "label" : "Website",
+    "placeholder" : "http://website.com",
+    "error" : "Please enter a valid URL"
+  }
+]
+```
+
+- `"name"`: the name of the field. this will be the key in the user profile.
+- `"type"`: the type of the `<input>`. You can use HTML5 input type.
+- `"label"`: the label of the field. It will be visible by the user.
+- `"placeholder"`: the value of the input `placeholder` attribute.
+- `"error"`: the error message that will be displayed if the field validation fail.
+- `"required"`: boolean value that indicate if the field is reauired or not.
+
+Go back to your `index.html` you should see the website field.
+
+Now that you know how to save information in the user profile, you probably want to list your user and their informations.
+
+## Step 5 - Listing users
+
+In your `admin.html` add the `users_admin` widget. Refresh your browser and you're done.
