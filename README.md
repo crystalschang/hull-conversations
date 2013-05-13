@@ -198,7 +198,7 @@ Now that you know how to save information in the user profile, you probably want
 
 ## Step 5 - Listing users
 
-In your `admin.html` add the `users_admin` widget. Refresh your browser and you're done.
+In your `admin.html` add the `users_admin` widget.
 
 ```html
 <body>
@@ -207,6 +207,16 @@ In your `admin.html` add the `users_admin` widget. Refresh your browser and you'
 </body>
 ```
 
+Refresh your browser and you're done.
+
 ## Conclusion
+
+What did we actually learn?
+
+- Creating widget.
+- Customizing registration form.
+- Saving informations in the user profile.
+- Listing users.
+
 
 I hope you enjoyed this tutorial and it was helpful for your projects. For any question send us an email to contact@hull.io.
