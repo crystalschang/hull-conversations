@@ -160,27 +160,27 @@ Open this new file in your browser. and fill the textare with:
 ```json
 [
   {
-    "name" : "name",
-    "type" : "text",
-    "label" : "Name",
-    "placeholder" : "Your name",
-    "error" : "Please enter your name",
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "placeholder": "Your name",
+    "error": "Please enter your name",
     "required": true
   },
   {
-    "name" : "email",
-    "type" : "email",
-    "label" : "Email",
-    "placeholder" : "you@provider.com",
-    "error" : "Please enter a valid email adress",
+    "name": "email",
+    "type": "email",
+    "label": "Email",
+    "placeholder": "you@provider.com",
+    "error": "Please enter a valid email adress",
     "required": true 
   },
   {
-    "name" : "website",
-    "type" : "url",
-    "label" : "Website",
-    "placeholder" : "http://website.com",
-    "error" : "Please enter a valid URL"
+    "name": "website",
+    "type": "url",
+    "label": "Website",
+    "placeholder": "http://website.com",
+    "error": "Please enter a valid URL"
   }
 ]
 ```
