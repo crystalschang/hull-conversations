@@ -200,6 +200,13 @@ Now that you know how to save information in the user profile, you probably want
 
 In your `admin.html` add the `users_admin` widget. Refresh your browser and you're done.
 
+```html
+<body>
+  <div data-hull-widget="users_admin@hull"></div>
+  <div data-hull-widget="registration_admin@hull"></div>
+</body>
+```
+
 ## Conclusion
 
 I hope you enjoyed this tutorial and it was helpful for your projects. For any question send us an email to contact@hull.io.
