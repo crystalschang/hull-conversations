@@ -1,16 +1,20 @@
 # User Registration Tutorial
 
-For this tutorial, we'll create a registration tunel. First, we will ask the user to log in with his Facebook account, them we will ask him to fill a form to complete his profile.
+For this tutorial, we'll create a registration workflow. It's a two-step:
+
+* ask the user to log in with his/her Facebook account
+* ask him/her to fill in a form to complete the profile
 
 ## Prerequisites
 
-- An organization and application. [Create one](http://hullapp.io/) if you haven’t already.
-- An authentication provider linked to your app, so users can log in. For this tutorial I will use Facebook but you can use another if you want. [See our documentation](http://hull.io/docs/services) for more details.
+- A hull.io application. [Create one](http://hullapp.io/) if you haven’t already.
+- An authentication provider linked to your app, so users can log in. For this tutorial we will use Facebook but you can use any other supported by hull. [See our documentation](http://hull.io/docs/services) for more details.
 - An HTTP server, to serve the files included in this repository. If you're not sure how to do it, check out [our guide](https://github.com/hull/minimhull/wiki/Setup-an-HTTP-server).
 
 ## Step 1 - Bootstraping your app
 
-First, create an `index.html`. Add jQuery, and hull.js to your page. You can also add Bootstrap if you do not like browsers default CSS.
+First, create an `index.html`. Add jQuery, and `hull.js` to your page. For the sake of this tutorial,
+we willalso use Twitter Bootstrap, though it is not mandatory in the general use case.
 
 ```html
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css">
@@ -29,38 +33,23 @@ Hull.init({
 </script>
 ```
 
-Replace `APPLICATION_ID` and `ORGANIZATION_URL` with the correct values which you can find in your [admin](http://hullapp.io).
+`APPLICATION_ID` and `ORGANIZATION_URL` must be replaced with the correct values which you can find in your [admin](http://hullapp.io).
 
 ## Step 2 - Creating wrapper widget
 
-We want to display different things in function of the user log in state. If he is logged, we will show him a form if he isn't we will show him a sign in button.
+Depending on the user being logged in or not, we want to display a form (if logged in) or a login button (resp. if not logged in).
 
-To do that we need to create a `wrapper` widget.
+To do that we need to create a `wrapper` widget. Insert the following code in your HTML document:
 
 ```html
-<head>
-  <!-- Code omitted on purpose -->
-
+  <!-- Javascript -->
   <script>
   Hull.widget('wrapper', {
-
+    templates: ['intro']
   });
   </script>
-</head>
-```
-
-Now, we need to declare a template.
-
-### Declaring template
-
-Our `wrapper` widget will have one template. It will contain a welcome message, our log in button if the user is not logged or our registration widget if he isn't.
-
-Let's create it:
-
-```html
-<head>
-  <!-- Code omitted on purpose -->
-
+  
+  <!-- Template -->
   <script type="text/x-template" data-hull-template="wrapper/intro">
     {{#if loggedIn}}
       <p>Hello {{me.name}} – <a href="#" data-hull-action="logout">Logout</a></p>
@@ -70,40 +59,20 @@ Let's create it:
       <div data-hull-widget="login_button@hull"></div>
     {{/if}}
   </script>
-</head>
-```
-
-As you can see we have prefixed our template name with "wrapper/" because it will be owned by the `wrapper` widget.
-
-Now, we need to specify this template in `wrapper` widget.
-
-```html
-<head>
-  <!-- Code omitted on purpose -->
-
-  <script>
-  Hull.widget('wrapper', {
-    templates: ['intro']
-  });
-  </script>
-
-  <!-- Code omitted on purpose -->
-</head>
 ```
 
 Congratualations! You've just created your first widget! Let's add it to our HTML document.
 
 ```html
-<body>
-  <div data-hull-widget="wrapper"></div>
-</body>
+<div data-hull-widget="wrapper"></div>
 ```
 
-Refresh your browser, you should see a sign in button.
+Refresh your browser, you should see the sign in button.
 
-## Step 3 - Updating template when user logs in.
+## Step 3 - Updating the template when user logs in.
 
-As you can see clicking on the sign in button doesn't show the form. To fix this, we need to set a `refreshEvents` property to refresh (re-render) the widget when the user changes.
+As you can see, clicking on the sign in button doesn't show the form. To fix this, we need to set a `refreshEvents` property
+to refresh (re-render) the widget when the user is updated (logged in/out, changed properties).
 
 ```html
 <head>
@@ -120,15 +89,17 @@ As you can see clicking on the sign in button doesn't show the form. To fix this
 </head>
 ```
 
-Here we set `refreshEvents` property to `['model.hull.me.change']`. This say to the widget to refresh itself each time the current user changes.
+Here we set `refreshEvents` property to `['model.hull.me.change']`. This is for the widget to refresh itself every time the current user changes.
 
 Now, clicking on the sign in button should show a form that contains two fields (name and email). You probably want to know more about your user.
 
 ## Step 4 - Custommizing the form
 
-It will be cool to know what is the website adress of our users.
+What about asking the user his/her website ?
 
-To do that, we need the to instanciate the `registration_admin` that will allow us to define the fields of our form. We will put this widget in a new HTML document.
+To do that, we need the to instanciate the `registration_admin` widget that will allow us to define our form's fields.
+It is a widget dedicated to customizing the registration form in your hull.io app.
+We will put this widget in a new HTML document.
 
 ```html
 <html>
@@ -155,7 +126,7 @@ To do that, we need the to instanciate the `registration_admin` that will allow 
 
 Replace `APPLICATION_ID`, `APPLICATION_SECRET` and `ORGANIZATION_URL` with the correct values which you can find in your [admin](http://hullapp.io).
 
-Open this new file in your browser. and fill the textare with:
+Open this new file in your browser and fill the textare with:
 
 ```json
 [
@@ -189,12 +160,12 @@ Open this new file in your browser. and fill the textare with:
 - `"type"`: the type of the `<input>`. You can use HTML5 input type.
 - `"label"`: the label of the field. It will be visible by the user.
 - `"placeholder"`: the value of the input `placeholder` attribute.
-- `"error"`: the error message that will be displayed if the field validation fail.
-- `"required"`: boolean value that indicate if the field is reauired or not.
+- `"error"`: the error message that will be displayed if the field validation fails.
+- `"required"`: boolean value that indicates whether the field is required or not.
 
 Go back to your `index.html` you should see the website field.
 
-Now that you know how to save information in the user profile, you probably want to list your user and their informations.
+Now that you know how to save information in the user profile, you probably want to list your users and their profile informations.
 
 ## Step 5 - Listing users
 
@@ -213,10 +184,10 @@ Refresh your browser and you're done.
 
 What did we actually learn?
 
-- Creating widget.
-- Customizing registration form.
+- Creating a widget.
+- Customizing a registration form.
 - Saving informations in the user profile.
 - Listing users.
 
 
-I hope you enjoyed this tutorial and it was helpful for your projects. For any question send us an email to contact@hull.io.
+For any question send us an email to contact@hull.io.
