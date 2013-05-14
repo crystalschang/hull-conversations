@@ -15,7 +15,7 @@ First, create an `index.html`. Add jQuery, and hull.js to your page. You can als
 ```html
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="//hull-js.s3.amazonaws.com/0.4.0/hull.js"></script>
+<script src="//hull-js.s3.amazonaws.com/0.4.3/hull.js"></script>
 ```
 
 Now initialize hull.
@@ -137,7 +137,7 @@ To do that, we need the to instanciate the `registration_admin` that will allow 
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="//hull-js.s3.amazonaws.com/develop/hull.js"></script>
+    <script src="//hull-js.s3.amazonaws.com/0.4.3/hull.js"></script>
 
     <script>
       Hull.init({
@@ -173,7 +173,7 @@ Open this new file in your browser. and fill the textare with:
     "label": "Email",
     "placeholder": "you@provider.com",
     "error": "Please enter a valid email adress",
-    "required": true 
+    "required": true
   },
   {
     "name": "website",
@@ -202,8 +202,8 @@ In your `admin.html` add the `users_admin` widget.
 
 ```html
 <body>
-  <div data-hull-widget="users_admin@hull"></div>
   <div data-hull-widget="registration_admin@hull"></div>
+  <div data-hull-widget="users_admin@hull"></div>
 </body>
 ```
 
