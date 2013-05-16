@@ -29,7 +29,7 @@ mandatory.
 
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
-    <script src="//hull-js.s3.amazonaws.com/0.4.3/hull.js" type="text/javascript"></script>
+    <script src="//hull-js.s3.amazonaws.com/0.4.4/hull.js" type="text/javascript"></script>
 
 Now initialize hull.
 
@@ -116,7 +116,7 @@ can for example keep it on your local machine, or protect it with a password.
 
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-        <script src="//hull-js.s3.amazonaws.com/0.4.3/hull.js"></script>
+        <script src="//hull-js.s3.amazonaws.com/0.4.4/hull.js"></script>
 
         <script>
           Hull.init({
