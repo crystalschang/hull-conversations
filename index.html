@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Hull Registration Demo</title>
+    <title>Hull Registration Form Widget</title>
 
     <link rel="stylesheet" href="//hullstrap.s3.amazonaws.com/0.1/hullstrap.css">
+    <link rel="stylesheet" href="style.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="//hull-js.s3.amazonaws.com/0.4.4/hull.js"></script>
+    <script src="//hull-js.s3.amazonaws.com/0.4.6/hull.js"></script>
 
     <!-- Initialize hull -->
     <script>
@@ -30,10 +31,13 @@
 
     <script type="text/x-template" data-hull-template="wrapper/intro">
       {{#if loggedIn}}
-        <p>Hello {{me.name}} – <a href="#" data-hull-action="logout">Logout</a></p>
-        <div data-hull-widget="registration@hull"></div>
+        <h4>Hello {{me.name}}
+          <a class="btn btn-small btn-inline" href="#" data-hull-action="logout">Logout</a>
+        </h4>
+        <hr>
+        <div data-hull-widget="registration@hull" data-hull-editable="true"></div>
       {{else}}
-        <p>Hello visitor</p>
+        <h4>Hello visitor</h4>
         <div data-hull-widget="login_button@hull"></div>
       {{/if}}
     </script>
@@ -41,13 +45,15 @@
 
   <body>
     <div class="container">
-      <div class="page-header">
+      <div class="page-header text-center">
           <h1>Hull Registration Demo</h1>
     </div>
       <div class="row">
-        <div class="span12">
-            <div data-hull-widget="wrapper"></div>
+        <div class="span6 offset3">
+          <div class="well">
+              <div data-hull-widget="wrapper"></div>
           </div>
+        </div>
       </div>
     </div>
   </body>
