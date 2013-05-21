@@ -1,0 +1,19 @@
+body{
+  background: #FBFBFC;
+  -webkit-font-smoothing: antialiased;
+
+}
+
+hr{
+  border-top: 1px solid #CDD6DB;
+}
+
+
+label{
+  display: inline-block;
+  width: 160px;
+}
+
+.hull-form-field-error{
+  color: red;
+}
