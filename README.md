@@ -5,10 +5,10 @@ For this tutorial, we'll create a registration workflow. It's a two-step process
 * Log the user in with his/her Facebook account
 * Let him/her fill a form to complete his profile
 
-[Here's a live demo](http://hull.github.io/hull-registration-tutorial/).
+[Here's a live demo](http://hull.github.io/hull-registration/).
 
 The code for this project can be found on
-[GitHub](https://github.com/hull/hull-registration-tutorial).
+[GitHub](https://github.com/hull/hull-registration).
 
 ## What you will need
 
