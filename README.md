@@ -103,7 +103,7 @@ about your user.
 
 What about asking the user his/her gender, website and agreement to the "terms"?
 
-For this, we need to build an admin page containing the `registration_admin`
+For this, we need to build an admin page containing the `admin/registration`
 widget. It will let us change the form's fields, We will put it in a new HTML
 document that we call `admin.html`
 
@@ -127,7 +127,7 @@ can for example keep it on your local machine, or protect it with a password.
         </script>
       </head>
       <body>
-        <div data-hull-widget="registration_admin@hull"></div>
+        <div data-hull-widget="admin/registration@hull"></div>
       </body>
     </html>
 
@@ -195,10 +195,10 @@ to list your users and their profile informations.
 
 ## Step 5 - Listing users
 
-In your `admin.html` add the `users_admin` widget.
+In your `admin.html` add the `admin/users` widget.
 
-    <div data-hull-widget="registration_admin@hull"></div>
-    <div data-hull-widget="users_admin@hull"></div>
+    <div data-hull-widget="admin/registration@hull"></div>
+    <div data-hull-widget="admin/users@hull"></div>
 
 Refresh your browser and you're done.
 
