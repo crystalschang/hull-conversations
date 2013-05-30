@@ -5,62 +5,44 @@
 
     <title>Hull Registration Admin</title>
 
-    <link rel="stylesheet" href="//hullstrap.s3.amazonaws.com/0.1/hullstrap.css">
-    <link rel="stylesheet" href="style.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="//hull-js.s3.amazonaws.com/0.4.3/hull.js"></script>
 
+    <link rel="stylesheet" href="//hullstrap.s3.amazonaws.com/stylesheets/hullstrap.css">
+    <script src="//hullstrap.s3.amazonaws.com/javascripts/hullstrap.js"></script>
+
+    <script src="https://d3f5pyioow99x0.cloudfront.net/develop/hull.js"></script>
     <script>
-      $(function(){
-        $('#appsecret_btn').on('click', function(e){
-          var appId  = $('#appId').val();
-          var appSecret = $('#appSecret').val();
-          var orgUrl = $('#orgUrl').val();
-          // Replace APPLICATION_ID, APPLICATION_SECRET and ORGANIZATION_URL.
-          Hull.init({
-            appId: appId,
-            appSecret: appSecret,
-            orgUrl: orgUrl
-          },function(e){
-            $('#login_form').remove()
-          });
-          e.preventDefault();
-          return false;
-        });
-      });
-    </script>
+      Hull.init({
+        appId: "516d68fc28e06bb7b8000040",
+        orgUrl: "http://hull-demos.hullapp.io"
+      })
+   </script>
 
     <!-- "wrapper" widget declaration -->
   </head>
 
   <body class='admin_page'>
     <div class="container">
-        <form class="form-inline" id="login_form"> 
-          <h1>Enter admin credentials</h1>
-          <div class="well">
-            <input id="appId" type="text" placeholder="AppId" value="516d68fc28e06bb7b8000040"/>
-            <input id="orgUrl" type="text" placeholder="OrgURL" value="http://hull-demos.hullapp.io"/>
-            <input id="appSecret" type="text" placeholder="AppSecret">
-            <button id="appsecret_btn" class='btn btn-warning'>Authenticate</button>
-          </div>
-        </form>
-
       <div class="page-header">
         <h1>Customize form</h1>
       </div>
       <div class="row">
         <div class="span12">
-          <div data-hull-widget="registration_admin@hull" class='well'></div>
+          <div data-hull-widget="admin/registration@hull" class='well'></div>
         </div>
       </div>
       <div class="page-header">
-        <h1>List registered Users</h1>
+        <h1>Registered Users</h1>
       </div>
       <div class="row">
-        <div class="span12">
-          <div data-hull-widget="users@hull"></div>
+        <div class="span8">
+          <div data-hull-widget="admin/users@hull"></div>
+        </div>
+        <div class="span4">
+          <div data-hull-widget="admin/user_profile@hull"></div>
         </div>
       </div>
     </div>
+    <div data-hull-widget="footer@hull"> </div>
   </body>
 </html>
