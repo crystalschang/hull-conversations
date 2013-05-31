@@ -5,19 +5,22 @@
 
     <title>Hull Registration Form Widget</title>
 
-    <link rel="stylesheet" href="//hullstrap.s3.amazonaws.com/0.1/hullstrap.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="//hull-js.s3.amazonaws.com/0.4.6/hull.js"></script>
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="//hullstrap.s3.amazonaws.com/stylesheets/hullstrap.css">
+    <script src="//hullstrap.s3.amazonaws.com/javascripts/hullstrap.js"></script>
+
+    <script src="https://d3f5pyioow99x0.cloudfront.net/develop/hull.js"></script>
     <!-- Initialize hull -->
     <script>
       Hull.init({
-        appId: '516d68fc28e06bb7b8000040',
-        orgUrl: 'http://hull-demos.hullapp.io'
-      });
-    </script>
+        appId: "516d68fc28e06bb7b8000040",
+        orgUrl: "http://hull-demos.hullapp.io"
+      })
+   </script>
 
+    <link rel="stylesheet" href="style.css">
     <!-- "wrapper" widget declaration -->
     <script>
       Hull.widget('wrapper', {
@@ -44,17 +47,20 @@
   </head>
 
   <body>
-    <a href="http://github.com/hull/hull-registration-tutorial" class="github-ribbon">Fork me on GitHub</a>
-    <div class="container">
-      <div class="page-header text-center">
-          <h1 class='logo'>Hull</h1>
-          <h3>Registration Demo</h3>
-    </div>
-      <div class="row">
-        <div class="span6 offset3">
-          <div data-hull-widget="wrapper"></div>
+    <a href="http://github.com/hull/hull-registration" class="github-ribbon">Fork me on GitHub</a>
+    <div class="wrapper featurette">
+      <div class="container page">
+        <div class="page-header text-center">
+            <h1 class='logo'>Hull</h1>
+            <h3>Registration Demo</h3>
+        </div>
+        <div class="row">
+          <div class="span6 offset3">
+            <div data-hull-widget="wrapper"></div>
+          </div>
         </div>
       </div>
     </div>
+    <div data-hull-widget="footer@hull"> </div>
   </body>
 </html>
