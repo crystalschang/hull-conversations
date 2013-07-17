@@ -1,9 +1,10 @@
 body{
-  background: #FBFBFC;
   -webkit-font-smoothing: antialiased;
   min-width: 940px;
 }
-
+.container {
+  width: 1200px;
+}
 .page .page-header h1.logo{
   display: inline-block;
   margin: 0;
@@ -23,7 +24,7 @@ body{
 
 
 .page label{
-  display: inline-block;
+/*  display: inline-block;*/
   width: 160px;
 }
 
@@ -43,15 +44,14 @@ body{
 /*Generic hull design*/
 body {
     margin: 0;
-    background: #f1f3f5;
+    background: #292E37;
 }
 
 .page{
-  color: #7c8a9e;
-  text-align: center
+  color: #555;
 }
 .page,.page button {
-    font: 20px/1.6 proxima-nova,"Helvetica Neue",Helvetica,Arial,Geneva;
+    font: 14px/1.6 proxima-nova,"Helvetica Neue",Helvetica,Arial,Geneva;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased
 }
@@ -71,8 +71,8 @@ body {
     z-index: 100;
     display: block;
     padding: 5px 50px;
-    background-color: #3492D3;
-    color: #fff;
+    background: rgba(255,255,255,.8);
+    color: #999;
     text-align: center;
     text-decoration: none;
     font-weight: 700;
@@ -86,20 +86,11 @@ body {
 }
 
 .page .btn {
-    /*display: inline-block;*/
-    /*margin: 0;*/
+    display: block;
     padding: 4px 24px;
     border: 0;
     border-radius: 8px;
-    background: #fff;
-    background-image: -o-linear-gradient(top,#3EA7DB 0,#3492D3 100%);
-    background-image: -moz-linear-gradient(top,#3EA7DB 0,#3492D3 100%);
-    background-image: -webkit-linear-gradient(top,#3EA7DB 0,#3492D3 100%);
-    background-image: -ms-linear-gradient(top,#3EA7DB 0,#3492D3 100%);
-    background-image: linear-gradient(top,#3EA7DB 0,#3492D3 100%);
-    -webkit-box-shadow: inset 0 -3px 0 rgba(0,0,0,.1);
-    -moz-box-shadow: inset 0 -3px 0 rgba(0,0,0,.1);
-    box-shadow: inset 0 -3px 0 rgba(0,0,0,.1);
+    background: rgba(0,0,0,.3);
     color: #fff;
     vertical-align: bottom;
     font-weight: 700;
@@ -110,25 +101,97 @@ body {
 }
 
 .page .btn:hover {
-    background-image: -o-linear-gradient(top,#4DB1E3 0,#3492D3 100%);
-    background-image: -moz-linear-gradient(top,#4DB1E3 0,#3492D3 100%);
-    background-image: -webkit-linear-gradient(top,#4DB1E3 0,#3492D3 100%);
-    background-image: -ms-linear-gradient(top,#4DB1E3 0,#3492D3 100%);
-    background-image: linear-gradient(top,#4DB1E3 0,#3492D3 100%);
     color:white;
+    background: rgba(0,0,0,.1);
 }
 
 .page .btn:active {
-    background-image: -o-linear-gradient(bottom,#3EA7DB 0,#3492D3 100%);
-    background-image: -moz-linear-gradient(bottom,#3EA7DB 0,#3492D3 100%);
-    background-image: -webkit-linear-gradient(bottom,#3EA7DB 0,#3492D3 100%);
-    background-image: -ms-linear-gradient(bottom,#3EA7DB 0,#3492D3 100%);
-    background-image: linear-gradient(bottom,#3EA7DB 0,#3492D3 100%);
-    -webkit-box-shadow: inset 0 3px 1px rgba(0,0,0,.08),0 1px 1px rgba(255,255,255,1);
-    -moz-box-shadow: inset 0 3px 1px rgba(0,0,0,.08),0 1px 1px rgba(255,255,255,1);
-    box-shadow: inset 0 3px 1px rgba(0,0,0,.08),0 1px 1px rgba(255,255,255,1)
+  color: #eee;
+}
+
+.alert-info {
+  
 }
 
 [data-hull-widget="footer@hull"]{text-align: left;}
   [data-hull-widget="footer@hull"] small{ font-size: 13px;}
   .project-footer{ background-color:#fff; }
+
+
+.white-bg {
+  border-radius: 5px;
+  background: rgba(255,255,255,.8);
+  padding: 9px;
+}
+
+/** First column **/
+.icons .btn {
+  padding: 10px;
+  margin: 0 10px 10px 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.hull-conversations {
+  min-height: 570px;
+}
+.hull-participants__header h2 {
+  font-size: 18px;
+}
+.hull-participants__header .btn {
+  display: none;
+}
+.hull-conversation__participants {
+  margin-bottom: 20px;
+}
+.hull-conversation__form button, .hull-identity__signin button {
+  margin-bottom: 6px;
+}
+.hull-conversation__form form button {
+  float: right;
+}
+
+.hull-conversations .conversations-empty {
+  font-size: 20px;
+  margin-top: 80px;
+}
+.hull-participants__list .media {
+  display: inline-block;
+}
+.hull-messages__list {
+  padding-top: 14px;
+  margin-top: 14px;
+  border-top: 2px solid #FBFBFC;
+}
+.hull-messages__list .media-heading {
+  text-align: left;
+}
+.hull-messages__list .text-success {
+  border-radius: 2px;
+  padding: 3px;
+  color: white;
+  background: #4DB1E3;
+}
+.hull-messages__description {
+  text-align: left;
+}
+.hull-messages__actions {
+  float: right;
+}
+.convoForm {
+  padding-bottom: 60px;
+}
+.newConvo {
+  display: none;
+}
+.newConvo input, .newConvo textarea, .newConvo header {
+  display: block;
+  text-align: left;
+  width: 525px;
+}
+.newConvo textarea {
+  height: 100px;
+}
+.newConvo label {
+  text-align: left;
+}

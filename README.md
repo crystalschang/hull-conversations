@@ -1,14 +1,14 @@
-# User Registration Tutorial
+# Conversations Tutorial
 
-For this tutorial, we'll create a registration workflow. It's a two-step process:
+For this tutorial, we'll create a conversation workflow. It's a two-step process:
 
-* Log the user in with his/her Facebook account
-* Let him/her fill a form to complete his profile
+* Allow a person to create a new conversation
+* Update related widgets with the new information
 
-[Here's a live demo](http://hull.github.io/hull-registration/).
+[Here's a live demo](http://hull.github.io/hull-conversations/).
 
 The code for this project can be found on
-[GitHub](https://github.com/hull/hull-registration).
+[GitHub](https://github.com/hull/hull-conversations).
 
 ## What you will need
 
@@ -43,30 +43,40 @@ Now initialize hull.
 Replace `APPLICATION_ID` and `ORGANIZATION_URL` with the correct values from
 your [admin](http://hullapp.io).
 
-## Step 2 - Create the wrapper widget
+## Step 2 - Create the conversation form widget
 
 Depending on the user being logged in or not, we want to display a form (if
 logged in) or a login button (resp. if not logged in).
 
-For this we create a `wrapper` widget. Insert the following code in your HTML
+For this we create a `conversation_form` widget. Insert the following code in your HTML
 document:
 
     <script type="text/javascript">
-      Hull.widget('wrapper', {
-        templates: ['intro']
+      Hull.widget('conversation_form', {
+        templates: ['form']
       });
     </script>
 
 
-    <script type="text/x-template">
-      {{#if loggedIn}}
-        <p>Hello {{me.name}} – <a href="#" data-hull-action="logout">Logout</a></p>
-        <div data-hull-widget="registration@hull"></div>
-      {{else}}
-        <p>Hello visitor</p>
-        <div data-hull-widget="login_button@hull"></div>
-      {{/if}}
+    <script type="text/x-template" data-hull-template="conversation_form/form">
+      <div class="convoForm">
+        <button class="btn startBtn pull-right" data-hull-action="startConvo">Start a new conversation</button>
+        {{#if loggedIn}}
+          <form class="newConvo">
+            <input type="text" name="name" placeholder="Title"></input>
+            <textarea name="message_body" placeholder="Start talking!"></textarea>
+            <div class="convoActions pull-right">
+              <button data-hull-action="create" class="btn">Submit</button>
+              <span data-hull-action="cancel">Cancel</span>
+            </div>
+          </form>
+        {{else}}
+          Login to start a new conversation
+          <div data-hull-widget="identity@hull"></div>
+        {{/if}}
+      </div>
     </script>
+
 
 By the way, Congrats! You've just created your first widget! Let's add it to our
 HTML document.
@@ -81,11 +91,11 @@ As you can see, clicking on the sign in button doesn't show the form. To fix
 this, we need to set a `refreshEvents` property to refresh (re-render) the
 widget when the user is updated (logged in/out, changed properties).
 
-Here's our updated wrapper widget:
+Here's our updated conversation_form widget:
 
     <script type="text/javascript">
-      Hull.widget('wrapper', {
-        templates: ['intro'],
+      Hull.widget('conversation_form', {
+        templates: ['form'],
         refreshEvents: ['model.hull.me.change']
       });
     </script>
@@ -93,105 +103,12 @@ Here's our updated wrapper widget:
 Here we set `refreshEvents` property to `['model.hull.me.change']`. This is for
 the widget to refresh itself every time the current user changes.
 
-Now, clicking on the sign in button should show a form that contains two fields
-(name and email).
+Now, clicking on the sign in button should show a conversation form that contains two fields.
 
-These are the default fields for this widget, but you probably want to know more
-about your user.
+## Step 4 - Handle actions on the form
+You may have noticed that there are `data-hull-action` attributes in the template that we created in Step 2.
 
-## Step 4 - Customize the form
 
-What about asking the user his/her gender, website and agreement to the "terms"?
-
-For this, we need to build an admin page containing the `admin/registration`
-widget. It will let us change the form's fields, We will put it in a new HTML
-document that we call `admin.html`
-
-Since it contains your App Secret, you will want to keep this page private. You
-can for example keep it on your local machine, or protect it with a password.
-
-    <html>
-      <head>
-        <title>Hull Registration Admin</title>
-
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css">
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-        <script src="//hull-js.s3.amazonaws.com/0.4.4/hull.js"></script>
-
-        <script>
-          Hull.init({
-            appId: 'APPLICATION_ID',
-            appSecret: 'APPLICATION_SECRET',
-            orgUrl: 'ORGANIZATION_URL'
-          });
-        </script>
-      </head>
-      <body>
-        <div data-hull-widget="admin/registration@hull"></div>
-      </body>
-    </html>
-
-Replace `APPLICATION_ID`, `APPLICATION_SECRET` and `ORGANIZATION_URL` with the
-correct values which you can find in your [admin](http://hullapp.io).
-
-Open this new file in your browser and fill the textarea with:
-
-    [
-      {
-        "name": "gender",
-        "type": "select",
-        "label": "Gender",
-        "options": [
-          { "value": "mr", "label": "Mr." },
-          { "value": "mrs", "label": "Mrs." },
-          { "value": "ms", "label": "Ms." }
-        ],
-        "error": "Please choose a gender",
-        "required": true
-      },
-      {
-        "name": "name",
-        "type": "text",
-        "label": "Name",
-        "placeholder": "Your name",
-        "error": "Please enter your name",
-        "required": true
-      },
-      {
-        "name": "email",
-        "type": "email",
-        "label": "Email",
-        "placeholder": "you@provider.com",
-        "error": "Please enter a valid email adress",
-        "required": true
-      },
-      {
-        "name": "website",
-        "type": "url",
-        "label": "Website",
-        "placeholder": "http://website.com",
-        "error": "Please enter a valid URL"
-      },
-      {
-        "name": "terms",
-        "type": "checkbox",
-        "checkboxLabel": "I agree to the terms",
-        "error": "You need to agree to the rules to participate",
-        "required": true
-      }
-    ]
-
-- `"name"`: the name of the field. this will be the key in the user profile.
-- `"type"`: the type of the `<input />`. You can use HTML5 input type.
-- `"label"`: the label of the field. It will be visible by the user.
-- `"placeholder"`: the value of the input `placeholder` attribute.
-- `"error"`: the error message that will be displayed if the field validation fails.
-- `"required"`: boolean value that indicates whether the field is required or not.
-
-Go back to your `index.html` you should see the website field.
-
-Now that you know how to save information in the user profile, you probably want
-to list your users and their profile informations.
 
 ## Step 5 - Listing users
 
@@ -207,6 +124,6 @@ Refresh your browser and you're done.
 What did we learn here?
 
 - Creating a widget.
-- Customizing a registration form.
+- Customizing a conversation form.
 - Saving informations in the user profile.
 - Listing users.

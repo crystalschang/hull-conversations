@@ -3,61 +3,171 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Hull Registration Form Widget</title>
+    <title>Hull Conversations Widget</title>
 
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
     <link rel="stylesheet" href="//hullstrap.s3.amazonaws.com/stylesheets/hullstrap.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://js.hull.dev/dist/develop/hull.js"></script>
+
     <script src="//hullstrap.s3.amazonaws.com/javascripts/hullstrap.js"></script>
 
-    <script src="https://d3f5pyioow99x0.cloudfront.net/develop/hull.js"></script>
+    <script src="/underscore.js"></script>
     <!-- Initialize hull -->
     <script>
       Hull.init({
-        appId: "516d68fc28e06bb7b8000040",
-        orgUrl: "http://hull-demos.hullapp.io"
+        appId : "51a5541ed12011552e000005",
+        orgUrl: "http://1d3181d7.hullapp.dev"
       })
    </script>
 
     <link rel="stylesheet" href="style.css">
+    
     <!-- "wrapper" widget declaration -->
     <script>
-      Hull.widget('wrapper', {
+      Hull.widget('conversation_form', {
         // Specify template.
-        templates: ['intro'],
+        templates: ['form'],
 
         // Re-render the widget each time the user changes.
-        refreshEvents: ['model.hull.me.change']
+        refreshEvents: ['model.hull.me.change'],
+
+        initialize: function() {
+          this.sandbox.on('hull.conversation.reset_form', function(id) {
+            this.options.id = id;
+            this.render();
+          }, this)
+        },
+        
+        actions: {
+          startConvo: function(e, action) {
+            $('.startBtn').hide();
+            $('.newConvo').slideToggle();
+          },
+          create: function(e, action) {
+            e.preventDefault();
+            var formData = this.sandbox.dom.getFormData($('.newConvo'));
+            
+            formData.public = true;
+            
+            var url = this.options.id ? this.options.id : 'app';
+            url += '/conversations';
+            this.api(url, 'post', formData).then(_.bind(function(convo) {
+              self.conversationId = convo.id;
+
+              this.sandbox.emit('hull.conversation.pick', convo.id);
+              this.sandbox.emit('hull.conversation.reload', this.options.id);
+              this.render();
+            }, this));
+          },
+          cancel: function(e, action) {
+            $('.newConvo').slideToggle(function() {
+              $('.startBtn').show();
+            });
+          }
+        }
       });
     </script>
 
-    <script type="text/x-template" data-hull-template="wrapper/intro">
-      {{#if loggedIn}}
-        <h4>Hello {{me.name}}
-          <a class="btn btn-small btn-inline" href="#" data-hull-action="logout">Logout</a>
-        </h4>
-        <hr>
-        <div data-hull-widget="registration@hull" data-hull-editable="true"></div>
-      {{else}}
-        <h4>Hello visitor</h4>
-        <div data-hull-widget="login_button@hull"></div>
-      {{/if}}
+    <script type="text/x-template" data-hull-template="conversation_form/form">
+      <div class="convoForm">
+        <button class="btn startBtn pull-right" data-hull-action="startConvo">Start a new conversation</button>
+          <form class="newConvo">
+            {{#if loggedIn}}
+                <input type="text" name="name" placeholder="Title"></input>
+                <textarea name="message_body" placeholder="Start talking!"></textarea>
+                <div class="convoActions pull-right">
+                  <button data-hull-action="create" class="btn">Submit</button>
+                  <span data-hull-action="cancel">Cancel</span>
+                </div>
+            {{else}}
+              Login to start a new conversation
+              <div data-hull-widget="identity@hull"></div>
+            {{/if}}
+          </form>
+      </div>
+    </script>
+    
+    
+    <!-- "Subjects" widget declaration -->
+    <script>
+      Hull.widget('subjects', {
+        // Specify template.
+        templates: ['list'],
+        
+        subjects: [
+          {name: 'facebook', color: '#3B5998'},
+          {name: 'twitter', color: '#00A0D1'},
+          {name: 'pinterest', color: '#C8232C'},
+          {name: 'dropbox', color: '#3D9AE8'},
+          {name: 'evernote', color: '#5BA525'},
+          {name: 'youtube', color: '#CC181E'},
+          {name: 'spotify', color: '#81B71A'}
+        ],
+        
+        beforeRender: function(data) {
+          data.subjects = this.subjects;
+          return data;
+        },
+        
+        actions: {
+          select: function(e, data) {
+            
+            var id = '~'+btoa(data.data.uid);
+            this.sandbox.emit('hull.conversation.reload', id);
+            this.sandbox.emit('hull.conversation.reset_form', id);
+            
+
+            var $body = $('body');
+            var color = '';
+            this.subjects.forEach(function(s) {
+              if(s.name == data.data.uid) {
+                color = s.color;
+              }
+            })
+            // Change background color
+            $body.css({
+              backgroundColor: color
+            });
+            icons = $('.icons').children().each(function() {
+              if($(this).hasClass(data.data.uid)) {
+                $(this).css('background','rgba(255,255,255,.8)');
+              }
+              else {
+                $(this).css('background','rgba(255,255,255,.3)');
+              }
+            });
+          }
+        }
+      });
+    </script>
+
+    <script type="text/x-template" data-hull-template="subjects/list">
+      <div class="icons">
+        {{#each subjects}}
+          <img src="images/icons/{{name}}.png" class="btn {{name}}" data-hull-action="select" data-hull-uid="{{name}}"/>
+        {{/each}}
+      </div>
     </script>
   </head>
 
   <body>
-    <a href="http://github.com/hull/hull-registration" class="github-ribbon">Fork me on GitHub</a>
+    <a href="http://github.com/hull/hull-conversations" class="github-ribbon">Fork me on GitHub</a>
     <div class="wrapper featurette">
       <div class="container page">
         <div class="page-header text-center">
             <h1 class='logo'>Hull</h1>
-            <h3>Registration Demo</h3>
-        </div>
-        <div class="row">
-          <div class="span6 offset3">
-            <div data-hull-widget="wrapper"></div>
-          </div>
+            <h3>Conversations Demo</h3>
+            
+            
+            <div class="row-fluid">
+              <div class="span1" data-hull-widget="subjects"></div>
+              <div class="span5 white-bg" data-hull-widget="conversations@hull"  data-hull-visibility="public"></div>
+              <div data-hull-widget="conversation_form" class="span6"></div>
+              <div data-hull-widget="conversation@hull" data-hull-id="" class="span6 white-bg"></div>
+            </div>
+            
+            
         </div>
       </div>
     </div>
