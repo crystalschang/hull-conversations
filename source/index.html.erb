@@ -6,70 +6,36 @@
     <title>Hull Conversations Widget</title>
 
 
-    <!-- <link rel="stylesheet" href="//hullstrap.s3.amazonaws.com/stylesheets/hullstrap.css"> -->
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//hullstrap.s3.amazonaws.com/stylesheets/hullstrap.css">
+    <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+<script type="text/javascript" src="//use.typekit.net/jyf4qww.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="http://hull-js.s3.amazonaws.com/develop/hull.js"></script>
     <script src="//hullstrap.s3.amazonaws.com/javascripts/hullstrap.js"></script>
 
+    <script src="http://hull-js.s3.amazonaws.com/develop/hull.js"></script>
+
+
     <script src="/javascripts/vendors.js"></script>
-    <!-- Initialize hull -->
-    <script>
-      Hull.init({
-        appId : "51e1e4108fff4f0b90000007",
-        orgUrl: "https://d5a07a04.hullapp.io"
-      })
-   </script>
+    <script src="/javascripts/app.js"></script>
 
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    
-    <!-- "wrapper" widget declaration -->
-    <script>
-      Hull.widget('conversation_form', {
-        // Specify template.
-        templates: ['form'],
-
-        // Re-render the widget each time the user changes.
-        refreshEvents: ['model.hull.me.change'],
-
-        initialize: function() {
-          this.sandbox.on('hull.conversation.reset_form', function(id) {
-            this.options.id = id;
-            this.render();
-          }, this)
-        },
-        
-        actions: {
-          create: function(e, action) {
-            e.preventDefault();
-            var formData = this.sandbox.dom.getFormData($('.newConvo'));
-            
-            formData.public = true;
-            
-            var url = this.options.id ? this.options.id : 'app';
-            url += '/conversations';
-            this.api(url, 'post', formData).then(_.bind(function(convo) {
-              self.conversationId = convo.id;
-
-              this.sandbox.emit('hull.conversation.pick', convo.id);
-              this.sandbox.emit('hull.conversation.reload', this.options.id);
-              this.render();
-            }, this));
-          }
-        }
-      });
-    </script>
 
     <script type="text/x-template" data-hull-template="conversation/form">
       {{#if loggedIn}}
         <form>
           <div class='media' data-hull-conversation-id="{{conversation.id}}">
             <div class="pull-left">
-              <img class="media-object img-rounded" src="{{me.picture}}" alt="{{me.name}}">
+              <img class="media-object avatar" src="{{me.picture}}" alt="{{me.name}}">
             </div>
-            <div class="media-body convo_entry">
+            <div class="media-body message_entry">
               <textarea name='description' class="input-block-level" rows="3" placeholder="Send a message... "></textarea>
-              <button data-hull-action="message" class="btn btn-small">{{#if isNew}}Send{{else}}Reply{{/if}}</button>
+              <button data-hull-action="message" class="btn btn-small">
+                <i class="icon icon-trash"></i>
+                {{#if isNew}}Send{{else}}Reply{{/if}}
+              </button>
             </div>
           </div>
         </form>
@@ -77,6 +43,7 @@
         <div data-hull-widget="login_button@hull"></div>
       {{/if}}
     </script>
+
     <script type="text/x-template" data-hull-template="conversation/conversation">
 
       {{#if errors.conversation}}
@@ -84,15 +51,17 @@
       {{else}}
         {{#if conversation}}
 
-
           <div class="page-header">
+            {{#if conversation.isDeleteable}}
+              <button data-hull-action="deleteConvo" data-hull-id="{{conversation.id}}" class="btn btn-small pull-right">
+                <i class="icon icon-trash"></i>
+                Delete conversation
+              </button>
+            {{/if}}
             <h5>
               {{conversation.name}}
               <small>{{conversation.messages_count_unread}}/({{conversation.messages_count}})</small>
             </h5>
-            {{#if conversation.isDeleteable}}
-              <button data-hull-action="deleteConvo" data-hull-id="{{conversation.id}}" class="btn pull-right">Delete conversation</button>
-            {{/if}}
           </div>
 
           {{#if conversation.notification_enabled}}
@@ -110,16 +79,12 @@
                       <img class="avatar media-object" src="{{actor.picture}}" width="50" alt="{{actor.name}}">
                     </div>
                     <div class="media-body">
-                      <h4 class="media-heading">
-                        <span class="pull-right">{{actor.name}}</span>
-                        {{#if isNew}}
-                          <small class="text-success">NEW!</small>
-                        {{/if}}
-                      </h4>
-                      <small class="muted">{{formatTime updated_at "h:mm A"}}</small>
-                      <p>
-                        {{body}}
-                      </p>
+                      <small class="muted pull-right">{{formatTime updated_at "h:mm A"}}</small>
+                      <h6 class="media-heading">
+                        <small class="new_message">★</small>
+                        {{actor.name}}
+                      </h6>
+                      <p> {{body}} </p>
                       <div class="hull-messages__actions">
                           {{#if isDeletable}}
                             <small>
@@ -137,122 +102,29 @@
         {{/if}}
       {{/if}}
     </script>
+
     <script type="text/x-template" data-hull-template="conversation_form/form">
-      <div class="convoForm">
-          <form class="newConvo">
-            {{#if loggedIn}}
-                <div class="input-append">
-                  <input type="text" class="span12" name="name" placeholder="Title"></input>
-                  <button data-hull-action="create" class="btn">+</button>
-                </div>
-                <!--<textarea name="message_body" placeholder="Start talking!"></textarea>
-                <button class="btn startBtn " data-hull-action="startConvo"> + </button>
-                <div class="convoActions pull-right">
-                  <span data-hull-action="cancel">Cancel</span> 
-                </div>-->
-            {{else}}
-              Login to start a new conversation
-              <div data-hull-widget="login_button@hull"></div>
-            {{/if}}
-          </form>
-      </div>
+      <form class="navbar-form">
+        {{#if loggedIn}}
+          <input type="text" name="name" placeholder="New thread"></input>
+          <button data-hull-action="create" class="btn bold">+</button>
+        {{else}}
+          <div data-hull-widget="login_button@hull"></div>
+        {{/if}}
+      </form>
     </script>
     
-    
-    <!-- "Subjects" widget declaration -->
-    <script>
-      Hull.widget('subjects', {
-        // Specify template.
-        templates: ['list'],
-        
-        subjects: [
-          {name: 'facebook', color: '#3B5998'},
-          {name: 'twitter', color: '#00A0D1'},
-          {name: 'pinterest', color: '#C8232C'},
-          // {name: 'dropbox', color: '#3D9AE8'},
-          // {name: 'evernote', color: '#5BA525'},
-          {name: 'youtube', color: '#CC181E'}
-          // {name: 'spotify', color: '#81B71A'}
-        ],
-
-        initialize: function() {
-          this.sandbox.on('hull.conversation.pick', this.pickConvo,this);
-        },
-
-        pickConvo: function(e){
-
-          var col = $('[data-hull-id="'+e+'"]').parents('.cols');
-          var icon = col.parents('.topic');
-          this.chooseTopic(icon.data('hull-topic'));
-          // var topics = $('.topic');
-          // var inactive = topics.not(icon);
-          // inactive.removeClass('active').addClass('hidden');
-          // icon.removeClass('hidden').addClass('active');
-          col.addClass('selected');
-        },
-
-        beforeRender: function(data) {
-          data.subjects = this.subjects;
-          return data;
-        },
-        
-        chooseTopic: function(topic){
-          var $body = $('body');
-          var color = '';
-          if(topic){
-            this.subjects.forEach(function(s) {
-              if(s.name == topic) {
-                color = s.color;
-              }
-            })
-            // Change background color
-            $body.css({
-              backgroundColor: color
-            });
-            $('.topic').each(function() {
-              var t = $(this);
-              if(t.hasClass(topic)) {
-                t.addClass('active').removeClass('hidden');
-              }
-              else {
-                t.removeClass('active').addClass('hidden');
-              }
-            });
-          } else{
-            $body.css({
-              backgroundColor: ''
-            });
-            $('.topic').removeClass('hidden active')
-          }
-
-        },
-
-        actions: {
-          back: function(e,data){
-            this.chooseTopic('');
-          },
-          select: function(e, data) {
-            
-            var id = '~'+btoa(data.data.uid);
-            // this.sandbox.emit('hull.conversation.reload', id);
-            // this.sandbox.emit('hull.conversation.reset_form', id);
-            this.chooseTopic(data.data.uid);
-
-          }
-        }
-      });
-    </script>
-
     <script type="text/x-template" data-hull-template="conversations/conversations">
         {{#each conversations}}
-          <div class="media">
+          <div class="media item">
             <a class="pull-left" href="#">
               <img class="media-object avatar" src="{{actor.picture}}">
             </a>
             <div class="media-body" data-hull-action="pickConvo" data-hull-id="{{id}}">
-              <h4 class="media-heading">{{name}}</h4>
-              <small>{{messages_count}}</small>
-              <small>{{formatTime updated_at 'h:mm a'}}</small>
+              <h5 class="media-heading">{{name}}</h5>
+              <small><i class="icon icon-power"></i> {{messages_count}}</small>
+              ·
+              <small><i class="icon icon-sun_stroke"></i> {{formatTime updated_at 'h:mm a'}}</small>
             </div>
           </div>
         {{else}}
@@ -262,45 +134,50 @@
             </div>
           {{/if}}
         {{/each}}
-
     </script>
 
     <script type="text/x-template" data-hull-template="subjects/list">
-      {{#each subjects}}
-        <div class="span3 topic {{name}}" data-hull-topic="{{name}}">
-          <img src="images/icons/{{name}}.png" class="subject {{name}}" data-hull-action="select" data-hull-uid="{{name}}"/>
-          <a href="#" data-hull-action="back" title="" class="btn-link btn back_link">← back</a>    
-          <div class="well">
-            <div class="cols">
-              <div class="threads">
-                <div data-hull-widget="conversations@hull" class="convo_list" data-hull-visibility="public" data-hull-uid="{{name}}"></div>
-                <div data-hull-widget="conversation_form" class="new_convo"></div>
-              </div>
-              <div class="convo">
-                <div data-hull-widget="conversation@hull" data-hull-id=""></div>
-              </div>
-            </div>
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <ul class="nav">
+              <li class="dropdown">
+                <a href="" title="" class="dropdown-toggle" data-toggle="dropdown">
+                  Topic
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  {{#each subjects}}
+                    <li>
+                      <a>
+                        <img src="images/icons/{{name}}.png" class="subject {{name}}" data-hull-action="select" data-hull-uid="{{name}}" width="20"/>
+                        {{name}}
+                      </a>
+                    </li>
+                  {{/each}}
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
-      {{/each}}
+      </div>
+      <div data-hull-widget="conversations@hull" class="topics" data-hull-visibility="public" data-hull-uid="{{name}}"></div>
+      <div class="navbar navbar-fixed-bottom">
+        <div data-hull-widget="conversation_form" class="navbar-inner new_conversation">
+      </div>
     </script>
 
 
   </head>
 
   <body>
-    <a href="http://github.com/hull/hull-conversations" class="github-ribbon">Fork me on GitHub</a>
-    <div class="wrapper featurette">
-      <div class="container page">
-        <div class="page-header text-center">
-            <h1 class='logo'>Hull</h1>
-            <h4>Choose a topic</h4>
-        </div>
+    <!-- <a href="http://github.com/hull/hull-conversations" class="github-ribbon">Fork me on GitHub</a> -->
 
-        <div class="row-fluid icons" data-hull-widget="subjects">
-        </div>
+    <div class="sidebar" data-hull-widget="subjects"> </div>
 
-      </div>
+    <div class="conversation_container">
+      <div class="conversation" data-hull-widget="conversation@hull"></div>
     </div>
+
   </body>
 </html>
