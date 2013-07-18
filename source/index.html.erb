@@ -52,15 +52,22 @@
         {{#if conversation}}
 
           <div class="page-header">
-            {{#if conversation.isDeleteable}}
-              <button data-hull-action="deleteConvo" data-hull-id="{{conversation.id}}" class="btn btn-link btn-small pull-right">
-                <i class="icon icon-trash"></i>
-                Delete conversation
-              </button>
-            {{/if}}
+            <div class='participants'>
+              {{#conversation.participants}}
+                <img class="avatar" data-toggle="tooltip" title="{{name}}" data-placement="bottom" src="{{picture}}" width="50" alt="{{name}}">
+              {{/conversation.participants}}
+            </div>
             <h5>
+              <div class='pull-right'>
+                {{#if conversation.isDeleteable}}
+                  <button data-hull-action="deleteConvo" data-hull-id="{{conversation.id}}" class="btn btn-link btn-small">
+                    <i class="icon icon-trash"></i>
+                    Delete conversation
+                  </button>
+                {{/if}}
+                <small><strong>{{conversation.messages_count_unread}} unread</strong> / {{conversation.messages_count}} messages</small>
+              </div>
               {{conversation.name}}
-              <small>{{conversation.messages_count_unread}}/({{conversation.messages_count}})</small>
             </h5>
           </div>
 
@@ -112,6 +119,7 @@
         {{#if loggedIn}}
           <i class="icon icon-plus"></i>          
           <input type="text" name="name" placeholder="New thread"></input>
+          <span class='info'>↵</span>
         {{else}}
           <div data-hull-widget="login_button@hull"></div>
         {{/if}}
@@ -151,8 +159,10 @@
                   <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
+                  <li><a href='#' data-hull-action='select' data-hull-uid=''> All Topics</a> </li>
+                  <li class="divider"></li>
                   {{#each subjects}}
-                    <li> <a> {{name}} </a> </li>
+                    <li> <a href='#' data-hull-action='select' data-hull-uid='{{name}}'> {{name}} </a> </li>
                   {{/each}}
                 </ul>
               </li>

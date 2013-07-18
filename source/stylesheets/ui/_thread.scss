@@ -27,6 +27,18 @@
       }
     }
   }
+  .info{
+    opacity: 0;
+    color: $blue;
+    position: absolute;
+    bottom: 13px;
+    right: 20px;
+    z-index: 101;
+    @include transition(all 0.5s ease);
+  }
+  input:focus + .info{
+    opacity: 1;
+  }
 }
 
 .plus input{
