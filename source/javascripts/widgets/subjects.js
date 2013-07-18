@@ -22,8 +22,7 @@ Hull.widget('subjects', {
       if(data.data.uid){
         var id = '~'+btoa(data.data.uid);
       } else {
-        var id=false;
-        //Todo Make this work
+        var id='';
       }
       this.sandbox.emit('hull.conversation.reload', id);
       this.sandbox.emit('hull.conversation.reset_form', id);
