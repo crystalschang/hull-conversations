@@ -1,0 +1,21 @@
+%fadein{
+  @include transition(all 2s ease);
+  @include opacity(90);
+  &:hover{
+    @include opacity(100);
+  }
+}
+
+%zoomin{
+  @include transition(all 0.2s ease);
+  &:hover{
+    @include scale(1.05);
+  }
+}
+
+%zoomin_slow{
+  @include transition(all 2s ease);
+  &:hover{
+    @include scale(1.05);
+  }
+}

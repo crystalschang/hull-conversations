@@ -1,0 +1,14 @@
+.activity{
+  .media-heading{
+    @include adjust-font-size-to(13px);
+  }
+  .author{
+    display: block;
+  }
+  .object{
+    margin: 10px 0;
+    float: left;
+    padding-left: 8px;
+    border-left: 2px solid $grayLighter;
+  }
+}

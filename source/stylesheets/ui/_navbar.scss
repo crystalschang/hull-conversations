@@ -1,0 +1,67 @@
+.navbar-inverse .brand{
+  border:none;
+}
+
+.navbar{
+  .identity{
+    margin-left:10px; 
+    > li > a.dropdown-toggle{
+      padding: 7px 19px;
+      .avatar{
+        margin-right: 5px;
+      }
+      .caret{
+        margin-top: 10px;
+      }
+    }
+  }
+  .navbar-inner{
+    position: relative;
+    z-index: 10;
+  }
+  .nav > li:hover {
+    > .dropdown-menu{
+      display: block;
+    }
+  }
+}
+.nav > li{
+  position: relative;
+}
+
+.dropdown-menu{
+  &.panel{
+    width: 100%;
+    left: 0;
+    margin: 0;
+    @include transition(all 0.2s ease);
+    background:rgba(255,255,255,0.9);
+    top: 0;
+    z-index: 9;
+    display: block;
+    &.visible{
+      top: 84px;
+      display: block;
+    }
+    > li > a{
+      padding:1.5em 0;
+      text-align: center;
+      border:none;
+      @include box-shadow(none);
+      @extend %zoomin;
+      &:hover{
+        border:none;
+        background: $wellBackgroundDark;
+      }
+    }
+    @media (max-width: 767px){
+      .span2{
+        width:16.6666666%;
+        float:left;
+      }
+      > li > a{
+        padding: 2em 0;
+      }
+    }
+  }
+}

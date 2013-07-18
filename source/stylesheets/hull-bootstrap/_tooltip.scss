@@ -1,0 +1,21 @@
+//
+// Tooltips
+// --------------------------------------------------
+
+
+// Base class
+.tooltip {
+  .tooltip-inner{
+    @include border-radius(0);
+    padding: 0.8em 1.5em;
+  }
+  &.top .tooltip-arrow{
+    border-top-color: $blue;
+  }
+  .tooltip-inner{
+    background-color: $blue;
+  }
+  &.in {
+    @include opacity(100);
+  }
+}

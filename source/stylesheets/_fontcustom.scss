@@ -1,0 +1,44 @@
+/* 
+ * Font Custom: bare CSS
+ */
+
+@font-face {
+  font-family: "fontcustom";
+  src: url("fontcustom.eot");
+  src: url("fontcustom.eot?#iefix") format("embedded-opentype"),
+       url("fontcustom.woff") format("woff"),
+       url("fontcustom.ttf") format("truetype"),
+       url("fontcustom.svg#fontcustom") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon-arrow:before,
+.icon-cart:before,
+.icon-facebook:before,
+.icon-flip:before,
+.icon-heart:before,
+.icon-play:before,
+.icon-search:before,
+.icon-twitter:before,
+.icon-youtube:before {
+  font-family: "fontcustom";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.icon-arrow:before { content: "\f100"; }
+.icon-cart:before { content: "\f101"; }
+.icon-facebook:before { content: "\f102"; }
+.icon-flip:before { content: "\f103"; }
+.icon-heart:before { content: "\f104"; }
+.icon-play:before { content: "\f105"; }
+.icon-search:before { content: "\f106"; }
+.icon-twitter:before { content: "\f107"; }
+.icon-youtube:before { content: "\f108"; }

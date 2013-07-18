@@ -1,0 +1,16 @@
+.avatar{
+  border-radius:$borderRadiusHuge;
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+  @include border-radius($borderRadiusHuge);
+  img{
+    @include border-radius($borderRadiusHuge);
+  }
+  border: 2px solid white;
+  display: inline-block;
+  &::before{
+    content:none;
+    @include box-shadow(none);
+  }
+}

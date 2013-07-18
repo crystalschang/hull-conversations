@@ -1,0 +1,24 @@
+{
+  "fonts": [
+    "fontcustom.ttf",
+    "fontcustom.woff",
+    "fontcustom.eot",
+    "fontcustom.svg"
+  ],
+  "templates": [
+    "_fontcustom-bootstrap.scss",
+    "_fontcustom.scss"
+  ],
+  "file_name": "fontcustom",
+  "glyphs": [
+    "arrow",
+    "cart",
+    "facebook",
+    "flip",
+    "heart",
+    "play",
+    "search",
+    "twitter",
+    "youtube"
+  ]
+}

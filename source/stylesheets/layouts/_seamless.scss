@@ -1,0 +1,25 @@
+.seamless{
+  // Fixed grid
+  @include grid-core($seamlessGridColumnWidth, $seamlessGridGutterWidth);
+
+  // Fluid grid
+  @include grid-fluid($seamlessFluidGridColumnWidth, $seamlessFluidGridGutterWidth);
+
+  // Input grid
+  @include grid-input($seamlessGridColumnWidth, $seamlessGridGutterWidth);
+}
+
+
+.seamless{
+  margin: 0;
+  &.row, &.row-fluid{
+    > [class*="span"]{
+      overflow: hidden;
+      margin: 0;
+    }
+    @for $i from 1 through 12 {
+      > .span#{$i} { width: 100% * $i/12; }
+    }
+    > .span4{ width:33.334%;}
+  }
+}

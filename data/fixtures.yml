@@ -1,0 +1,254 @@
+avatar:
+  -
+    image: '/images/posters/5.jpg'
+    title: 'Moi, moche et méchant 2'
+poster:
+  -
+    image: '/images/posters/1.jpg'
+    title: 'Arnaque à la carte'
+    genre: 'Comédie'
+    date: '6 juin 2013'
+    dvd_date: '18 aout 2012'
+    buy_link: 'http://google.com'
+    products:
+      -
+        format: 'DVD'
+        date: '18 janvier 2014'
+        image: '/images/posters/1.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'Blu-Ray'
+        date: '18 janvier 2014'
+        image: '/images/posters/1.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'Edition Collector'
+        date: '18 janvier 2014'
+        image: '/images/posters/1.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'VOD'
+        date: '18 janvier 2014'
+        image: '/images/posters/1.jpg'
+        buy_link: 'http://google.com'
+    links:
+      - 
+        title: 'Site officiel'
+        link: 'http://google.com'
+      - 
+        title: 'Page Facebook'
+        link: 'http://facebook.com'
+    authors: 'de Robert Schwentke'
+    actors: 
+      - Jeff Bridges
+      - Ryan Reynolds
+    synopsis: | 
+      Dans le film d'aventures surnaturelles R.I.P.D., Jeff Bridges et Ryan Reynolds jouent un tandem de flics d'un genre très spécial, puisque décédés, et envoyés par leur unité de police R.I.P.D. (Rest in Peace Department) pour protéger notre monde d'une recrudescence de créatures néfastes qui refusent de passer tranquillement dans l'autre monde. 
+      R.I.P.D. est réalisé par Robert Schwentke (Red) et produit par Neal. H. Moritz (la saga Fast & Furious, Je suis une légende), Michael Fottrell et Mike Richardson.
+  -
+    image: '/images/posters/2.jpg'
+    title: 'Fast & Furious 6'
+    genre: 'Comédie'
+    date: '6 juin 2013'
+    dvd_date: '18 aout 2012'
+    buy_link: 'http://google.com'
+    products:
+      -
+        format: 'DVD'
+        date: '18 janvier 2014'
+        image: '/images/posters/2.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'Blu-Ray'
+        date: '18 janvier 2014'
+        image: '/images/posters/2.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'Edition Collector'
+        date: '18 janvier 2014'
+        image: '/images/posters/2.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'VOD'
+        date: '18 janvier 2014'
+        image: '/images/posters/2.jpg'
+        buy_link: 'http://google.com'
+    links:
+      - 
+        title: 'Site officiel'
+        link: 'http://google.com'
+      - 
+        title: 'Page Facebook'
+        link: 'http://facebook.com'
+    authors: 'de Robert Schwentke'
+    actors: 
+      - Jeff Bridges
+      - Ryan Reynolds
+    synopsis: | 
+      Dans le film d'aventures surnaturelles R.I.P.D., Jeff Bridges et Ryan Reynolds jouent un tandem de flics d'un genre très spécial, puisque décédés, et envoyés par leur unité de police R.I.P.D. (Rest in Peace Department) pour protéger notre monde d'une recrudescence de créatures néfastes qui refusent de passer tranquillement dans l'autre monde. 
+      R.I.P.D. est réalisé par Robert Schwentke (Red) et produit par Neal. H. Moritz (la saga Fast & Furious, Je suis une légende), Michael Fottrell et Mike Richardson.
+  -
+    image: '/images/posters/3.jpg'
+    title: 'Moi, moche et méchant 2'
+    genre: 'Comédie'
+    date: '6 juin 2013'
+    dvd_date: '18 aout 2012'
+    buy_link: 'http://google.com'
+    products:
+      -
+        format: 'DVD'
+        date: '18 janvier 2014'
+        image: '/images/posters/3.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'Blu-Ray'
+        date: '18 janvier 2014'
+        image: '/images/posters/3.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'Edition Collector'
+        date: '18 janvier 2014'
+        image: '/images/posters/3.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'VOD'
+        date: '18 janvier 2014'
+        image: '/images/posters/3.jpg'
+        buy_link: 'http://google.com'
+    links:
+      - 
+        title: 'Site officiel'
+        link: 'http://google.com'
+      - 
+        title: 'Page Facebook'
+        link: 'http://facebook.com'
+    authors: 'de Robert Schwentke'
+    actors: 
+      - Jeff Bridges
+      - Ryan Reynolds
+    synopsis: | 
+      Dans le film d'aventures surnaturelles R.I.P.D., Jeff Bridges et Ryan Reynolds jouent un tandem de flics d'un genre très spécial, puisque décédés, et envoyés par leur unité de police R.I.P.D. (Rest in Peace Department) pour protéger notre monde d'une recrudescence de créatures néfastes qui refusent de passer tranquillement dans l'autre monde. 
+      R.I.P.D. est réalisé par Robert Schwentke (Red) et produit par Neal. H. Moritz (la saga Fast & Furious, Je suis une légende), Michael Fottrell et Mike Richardson.
+  -
+    image: '/images/posters/4.jpg'
+    title: 'American Nightmare'
+    genre: 'Comédie'
+    date: '6 juin 2013'
+    dvd_date: '18 aout 2012'
+    buy_link: 'http://google.com'
+    products:
+      -
+        format: 'DVD'
+        date: '18 janvier 2014'
+        image: '/images/posters/4.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'Blu-Ray'
+        date: '18 janvier 2014'
+        image: '/images/posters/4.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'Edition Collector'
+        date: '18 janvier 2014'
+        image: '/images/posters/4.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'VOD'
+        date: '18 janvier 2014'
+        image: '/images/posters/4.jpg'
+        buy_link: 'http://google.com'
+    links:
+      - 
+        title: 'Site officiel'
+        link: 'http://google.com'
+      - 
+        title: 'Page Facebook'
+        link: 'http://facebook.com'
+    authors: 'de Robert Schwentke'
+    actors: 
+      - Jeff Bridges
+      - Ryan Reynolds
+    synopsis: | 
+      Dans le film d'aventures surnaturelles R.I.P.D., Jeff Bridges et Ryan Reynolds jouent un tandem de flics d'un genre très spécial, puisque décédés, et envoyés par leur unité de police R.I.P.D. (Rest in Peace Department) pour protéger notre monde d'une recrudescence de créatures néfastes qui refusent de passer tranquillement dans l'autre monde. 
+      R.I.P.D. est réalisé par Robert Schwentke (Red) et produit par Neal. H. Moritz (la saga Fast & Furious, Je suis une légende), Michael Fottrell et Mike Richardson.
+  -
+    image: '/images/posters/5.jpg'
+    title: 'R.I.P.D Brigade Fantôme'
+    genre: 'Comédie'
+    date: '6 juin 2013'
+    dvd_date: '18 aout 2012'
+    buy_link: 'http://google.com'
+    products:
+      -
+        format: 'DVD'
+        date: '18 janvier 2014'
+        image: '/images/posters/5.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'Blu-Ray'
+        date: '18 janvier 2014'
+        image: '/images/posters/5.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'Edition Collector'
+        date: '18 janvier 2014'
+        image: '/images/posters/5.jpg'
+        buy_link: 'http://google.com'
+      -
+        format: 'VOD'
+        date: '18 janvier 2014'
+        image: '/images/posters/5.jpg'
+        buy_link: 'http://google.com'
+    links:
+      - 
+        title: 'Site officiel'
+        link: 'http://google.com'
+      - 
+        title: 'Page Facebook'
+        link: 'http://facebook.com'
+    authors: 'de Robert Schwentke'
+    actors: 
+      - Jeff Bridges
+      - Ryan Reynolds
+    synopsis: | 
+      Dans le film d'aventures surnaturelles R.I.P.D., Jeff Bridges et Ryan Reynolds jouent un tandem de flics d'un genre très spécial, puisque décédés, et envoyés par leur unité de police R.I.P.D. (Rest in Peace Department) pour protéger notre monde d'une recrudescence de créatures néfastes qui refusent de passer tranquillement dans l'autre monde. 
+      R.I.P.D. est réalisé par Robert Schwentke (Red) et produit par Neal. H. Moritz (la saga Fast & Furious, Je suis une légende), Michael Fottrell et Mike Richardson.
+promo:
+  - 
+    image: '/images/promo/1.jpg'
+    title: 'R.I.P.D.'
+  - 
+    image: '/images/promo/2.jpg'
+    title: 'Moi, moche et méchant 2'
+thumbnail:
+  -
+    image: '/images/thumbnails/1.jpg'
+    title: 'Moi, moche et méchant 2'
+  -
+    image: '/images/thumbnails/2.jpg'
+    title: 'Moi, moche et méchant 2'
+  -
+    image: '/images/thumbnails/3.jpg'
+    title: 'Moi, moche et méchant 2'
+  -
+    image: '/images/thumbnails/4.jpg'
+    title: 'Moi, moche et méchant 2'
+  -
+    image: '/images/thumbnails/5.jpg'
+    title: 'Moi, moche et méchant 2'
+  -
+    image: '/images/thumbnails/6.jpg'
+    title: 'Moi, moche et méchant 2'
+  -
+    image: '/images/thumbnails/7.jpg'
+    title: 'Moi, moche et méchant 2'
+  -
+    image: '/images/thumbnails/8.jpg'
+    title: 'Moi, moche et méchant 2'
+  -
+    image: '/images/thumbnails/9.jpg'
+    title: 'Moi, moche et méchant 2'
+logo:
+  -
+    image: '/images/logo.jpg'
+    title: 'Logo'
