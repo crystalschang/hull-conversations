@@ -10,7 +10,7 @@
       display: none;
       position: absolute;
       right: 10px;
-      bottom: 15px;
+      bottom: 20px;
       @include transition(all .2s ease);
       @include opacity(.5);
       &:hover{

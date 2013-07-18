@@ -3,12 +3,12 @@ Hull.widget('subjects', {
   templates: ['list'],
   
   subjects: [
-    {name: 'facebook', color: '#3B5998'},
-    {name: 'twitter', color: '#00A0D1'},
-    {name: 'pinterest', color: '#C8232C'},
+    {name: 'World peace', color: '#3B5998'},
+    {name: 'Superbowl', color: '#00A0D1'},
+    {name: 'Mac vs PC', color: '#C8232C'},
     // {name: 'dropbox', color: '#3D9AE8'},
     // {name: 'evernote', color: '#5BA525'},
-    {name: 'youtube', color: '#CC181E'}
+    {name: 'Prism', color: '#CC181E'}
     // {name: 'spotify', color: '#81B71A'}
   ],
 

@@ -7,4 +7,21 @@
   max-width: 800px;
   min-width: 250px;
   box-sizing: border-box;
+  .media-body{
+    p{
+      background: #CBD6EB;
+      @include border-radius(0 20px 20px);
+      padding: 4px 20px;
+      max-width: 100%;
+      width: auto;
+      display: inline-block;
+      background:#4786FF;
+      color:white;
+    }
+  }
+  .media-heading{
+    font-weight: normal;
+    font-size: 12px;
+  }
 }
+
